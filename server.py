@@ -1,9 +1,20 @@
 import socket
 import io
+import os
+import sys
+from dotenv import load_dotenv
 from PIL import Image
 
 # Config
-PORT = 4444
+load_dotenv()
+try:
+    PORT = int(os.environ["SERVER_PORT"])
+except KeyError as e:
+    print(f"Missing config value {e}")
+    sys.exit(1)
+except ValueError:
+    print("Config value SERVER_PORT must be an integer")
+    sys.exit(1)
 
 running = True
 
