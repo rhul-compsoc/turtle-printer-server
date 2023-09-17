@@ -19,12 +19,12 @@ except ValueError:
 running = True
 
 # Create server socket
-while running:
-    # Continuously accept new connections
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        sock.bind(("localhost", PORT))
-        sock.listen()
-        # Accept incoming connections
+# Continuously accept new connections
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    sock.bind(("", PORT))
+    sock.listen()
+    # Accept incoming connections
+    while running:
         conn, addr = sock.accept()
         with conn:
             print(f"New connection from {addr}")
